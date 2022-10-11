@@ -1,5 +1,6 @@
 # Josh Walters
 install.packages('ElemStatLearn')
+# removed from cran
 library('ElemStatLearn')
 library("klaR") # different from e1071 naivebayes - try it too!
 library("caret")

@@ -1,4 +1,7 @@
 require(mlbench)
+library(mlbench)
+library(e1071)
+
 data(HouseVotes84)
 model <- naiveBayes(Class ~ ., data = HouseVotes84)
 predict(model, HouseVotes84[1:10,-1])
@@ -20,3 +23,4 @@ m <- naiveBayes(Species ~ ., data = iris)
 m <- naiveBayes(iris[,-5], iris[,5])
 m
 table(predict(m, iris[,-5]), iris[,5])
+

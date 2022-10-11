@@ -1,3 +1,4 @@
+par(mfrow=c(1,1))
 library(gdata) 
 #faster xls reader but requires perl!
 bronx1<-read.xls(file.choose(),pattern="BOROUGH",stringsAsFactors=FALSE,sheet=1,perl="/usr/bin/perl") 

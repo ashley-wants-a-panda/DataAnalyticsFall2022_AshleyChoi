@@ -10,19 +10,27 @@ minprice<-10000
 bronx1<-bronx1[which(bronx1$SALE.PRICE>=minprice),]
 nval<-dim(bronx1)[1]
 
-bronx1$ADDRESSONLY<- gsub("[,][[:print:]]*","",gsub("[ ]+","",trim(bronx1$ADDRESS))) bronxadd<-unique(data.frame(bronx1$ADDRESSONLY, bronx1$ZIP.CODE,stringsAsFactors=FALSE)) names(bronxadd)<-c("ADDRESSONLY","ZIP.CODE") bronxadd<-bronxadd[order(bronxadd$ADDRESSONLY),] duplicates<-duplicated(bronx1$ADDRESSONLY)
+bronx1$ADDRESSONLY<- gsub("[,][[:print:]]*","",gsub("[ ]+","",trim(bronx1$ADDRESS))) 
+bronxadd<-unique(data.frame(bronx1$ADDRESSONLY, bronx1$ZIP.CODE,stringsAsFactors=FALSE)) 
+names(bronxadd)<-c("ADDRESSONLY","ZIP.CODE") 
+bronxadd<-bronxadd[order(bronxadd$ADDRESSONLY),] 
+duplicates<-duplicated(bronx1$ADDRESSONLY)
 
 for(i in 1:2345) {
 if(duplicates[i]==FALSE) dupadd<-bronxadd[bronxadd$duplicates,1]
 }#what are we doing with dupadd?
 
-nsample=450
 
-addsample<-bronxadd[sample.int(dim(bronxadd),size=nsample),]#I use nval here 
+str(bronxadd)
+nsample=450
+addsample<-bronxadd[sample(dim(bronxadd),size=nsample, replace=TRUE),]#I use nval here 
 # may need to install this package
 library(ggmap)
 addrlist<-paste(addsample$ADDRESSONLY, "NY", addsample$ZIP.CODE, "US", sep=" ") 
 querylist<-geocode(addrlist) #This is cool. Take a break.
+
+# REQUIRES API KEY, CANNOT ACCESS API
+
 
 matched<-(querylist$lat!=0 &&querylist$lon!=0) addsample<-cbind(addsample,querylist$lat,querylist$lon) 
 names(addsample)<-c("ADDRESSONLY","ZIPCODE","Latitude","Longitude")# correct the column na adduse<-merge(bronx1,addsample)

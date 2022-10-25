@@ -1,5 +1,6 @@
 require(rpart)
-Swiss_rpart <- rpart(Fertility ~ Agriculture + Education + Catholic, data = swiss)
+swiss_rpart <- rpart(Fertility ~ Agriculture + Education + Catholic, data = swiss)
+help(plot)
 plot(swiss_rpart) # try some different plot options
 text(swiss_rpart) # try some different text options
 
@@ -23,5 +24,11 @@ plot(tr)
 text(tr)
 #find "prettier" ways to plot the tree
 
+library(rpart.plot)
+# Create a decision tree model
+tree <- rpart(Species ~ ., data=iris)
+# Visualize the decision tree with rpart.plot
+help(rpart.plot)
+rpart.plot(tree, box.palette="RdBu", shadow.col="gray", nn=TRUE)
 
 

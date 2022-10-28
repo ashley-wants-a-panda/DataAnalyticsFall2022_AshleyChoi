@@ -26,7 +26,7 @@ plot(model1, pch=18, col='red', which = c(4))
 cooks.distance(model1)
 CooksDistance = cooks.distance(model1)
 
-sort(round(CooksDistance,5))
+max(round(CooksDistance,5))
 
 
 

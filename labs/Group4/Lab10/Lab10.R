@@ -32,6 +32,7 @@ text(prune.boston ,pretty=0)
 # we use the unpruned tree to make predictions on the test set.
 yhat=predict(tree.boston ,newdata=Boston[-train ,])
 boston.test=Boston[-train ,"medv"]
+head(Boston)
 plot(yhat,boston.test)
 # adding the abline()
 abline(0,1)
